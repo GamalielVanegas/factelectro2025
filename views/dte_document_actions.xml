@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="action_dte_document" model="ir.actions.act_window">
+    <field name="name">Documentos DTE</field>
+    <field name="res_model">dte.document</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+</odoo>
+
