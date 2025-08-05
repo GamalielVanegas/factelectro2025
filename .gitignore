@@ -1,0 +1,22 @@
+# Bytecode de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs y temporales
+*.log
+*.tmp
+
+# Entornos virtuales
+.venv/
+env/
+ENV/
+
+# Archivos swap / editores
+*.swp
+*~
+
+# Otros
+.DS_Store
+Thumbs.db
+

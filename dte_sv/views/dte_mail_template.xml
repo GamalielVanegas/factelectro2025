@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Plantilla para enviar la factura + JSON DTE -->
+  <record id="email_template_dte_document" model="mail.template">
+    <field name="name">Enviar Factura + DTE</field>
+    <field name="model_id" ref="dte_sv.model_dte_document"/>
+    <field name="email_from">${(object.move_id.company_id.email_formatted or '')|safe}</field>
+    <field name="email_to">${(object.move_id.partner_id.email)|safe}</field>
+    <field name="subject">Factura ${object.move_id.name} y DTE ${object.codigo_generacion}</field>
+    <field name="body_html"><![CDATA[
+      <p>Estimado/a ${object.move_id.partner_id.name},</p>
+      <p>Adjunto encontrará su factura <strong>${object.move_id.name}</strong> y el Documento Tributario Electrónico (DTE).</p>
+      <p>Saludos,</p>
+      <p>${object.move_id.company_id.name}</p>
+    ]]></field>
+    <!-- Adjuntar automáticamente el PDF generado por report dte_sv.report_dte_document_pdf -->
+    <field name="report_template" ref="dte_sv.report_dte_document_pdf"/>
+    <field name="report_name">'Documento_DTE_' + object.codigo_generacion + '.pdf'</field>
+    <!-- Adjuntar el JSON base64 del campo json_dte -->
+    <field name="attachment_ids" eval="
+      [(0, 0, {
+        'name': 'DTE_' + object.codigo_generacion + '.json',
+        'datas': object.json_dte,
+        'datas_fname': 'DTE_' + object.codigo_generacion + '.json',
+      })]
+    "/>
+    <field name="auto_delete" eval="True"/>
+  </record>
+</odoo>
+

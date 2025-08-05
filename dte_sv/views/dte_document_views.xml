@@ -1,0 +1,60 @@
+<odoo>
+    <!-- Vista tipo formulario -->
+    <record id="view_dte_document_form" model="ir.ui.view">
+        <field name="name">dte.document.form</field>
+        <field name="model">dte.document</field>
+        <field name="arch" type="xml">
+            <form string="DTE">
+                <header>
+                    <button name="enviar_dte" type="object" string="Enviar DTE" class="btn-primary"
+                            attrs="{'invisible': [('estado_dte', '!=', 'borrador')]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="move_id"/>
+                        <field name="tipo_documento"/>
+                        <field name="modelo_facturacion"/>
+                        <field name="tipo_transmision"/>
+                        <field name="condicion_operacion"/>
+                        <field name="codigo_generacion"/>
+                        <field name="numero_control"/>
+                        <field name="sello_recepcion"/>
+                        <field name="estado_dte"/>
+                        <field name="fecha_envio"/>
+                        <field name="valor_letras"/>
+                        <field name="observaciones"/>
+                        <field name="json_dte" filename="codigo_generacion"/>
+                        <field name="version_legible_pdf" filename="codigo_generacion"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista tipo árbol -->
+    <record id="view_dte_document_tree" model="ir.ui.view">
+        <field name="name">dte.document.tree</field>
+        <field name="model">dte.document</field>
+        <field name="arch" type="xml">
+            <tree string="DTEs">
+                <field name="codigo_generacion"/>
+                <field name="tipo_documento"/>
+                <field name="estado_dte"/>
+                <field name="fecha_envio"/>
+                <field name="move_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Menú raíz y submenú -->
+    <menuitem id="menu_dte_root" name="Facturación Electrónica" sequence="10"/>
+    <menuitem id="menu_dte_document" name="Documentos DTE" parent="menu_dte_root" sequence="10" action="action_dte_document"/>
+
+    <!-- Acción -->
+    <record id="action_dte_document" model="ir.actions.act_window">
+        <field name="name">Documentos DTE</field>
+        <field name="res_model">dte.document</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
+
