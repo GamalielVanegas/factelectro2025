@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <!-- Plantilla para enviar la factura + JSON DTE -->
-  <record id="email_template_dte_document" model="mail.template">
-    <field name="name">Enviar Factura + DTE</field>
-    <field name="model_id" ref="dte_sv.model_dte_document"/>
-    <!-- Ahora usamos el email configurado en la Compañía, garantizado válido -->
-    <field name="email_from">${object.env.company.email or ''}</field>
-    <field name="email_to">${(object.move_id.partner_id.email or '')}</field>
-    <field name="subject">Factura ${object.move_id.name} y DTE ${object.codigo_generacion}</field>
-    <field name="body_html"><![CDATA[
-      <p>Estimado/a ${object.move_id.partner_id.name},</p>
-      <p>Adjunto encontrará su factura <strong>${object.move_id.name}</strong> y el Documento Tributario Electrónico (DTE).</p>
-      <p>Saludos,</p>
-      <p>${object.move_id.company_id.name}</p>
-    ]]></field>
-    <!-- Ya no usamos report_template ni report_name: los adjuntos (PDF + JSON) los inyecta el código Python -->
-    <field name="auto_delete" eval="True"/>
-  </record>
+  <data>
+    <!-- Plantilla para enviar la factura + JSON DTE -->
+    <record id="email_template_dte_document" model="mail.template">
+      <field name="name">Enviar Factura + DTE</field>
+      <field name="model_id" ref="dte_sv.model_dte_document"/>
+
+      <!-- El valor de email_from lo inyectamos desde el código, evitamos aquí expresiones no evaluadas -->
+      <field name="email_from">${object.env.company.email}</field>
+      <field name="email_to">${object.move_id.partner_id.email}</field>
+
+      <!-- Subject sin saltos de línea para evitar el header error -->
+      <field name="subject">Factura ${object.move_id.name} y DTE ${object.codigo_generacion}</field>
+
+      <field name="body_html"><![CDATA[
+        <p>Estimado/a ${object.move_id.partner_id.name},</p>
+        <p>Adjunto encontrará su factura <strong>${object.move_id.name}</strong> y el Documento Tributario Electrónico (DTE).</p>
+        <p>Saludos,</p>
+        <p>${object.move_id.company_id.name}</p>
+      ]]></field>
+
+      <field name="auto_delete" eval="True"/>
+    </record>
+  </data>
 </odoo>
 

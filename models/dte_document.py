@@ -58,7 +58,7 @@ class DteDocument(models.Model):
     def enviar_dte(self):
         """Genera JSON y PDF, actualiza estado y envía correo con PDF y JSON adjuntos."""
         for record in self:
-            # 1) Generar y almacenar JSON en base64
+            # (1) Generar JSON base64…
             json_data = {
                 'codigo_generacion': record.codigo_generacion,
                 'numero_control': record.numero_control or 'NC-00001',
@@ -71,21 +71,22 @@ class DteDocument(models.Model):
                 'observaciones': record.observaciones or '',
                 'valor_letras': record.valor_letras or '',
             }
-            json_bytes = json.dumps(json_data, indent=2).encode('utf-8')
-            record.json_dte = base64.b64encode(json_bytes)
+            record.json_dte = base64.b64encode(
+                json.dumps(json_data, indent=2).encode('utf-8')
+            )
 
-            # 2) Generar PDF del DTE a partir del report QWeb
+            # (2) Generar PDF QWeb…
             report_service = self.env['ir.actions.report']
             pdf_content, _ = report_service.with_context(
                 active_ids=[record.id]
             )._render_qweb_pdf('dte_sv.report_dte_document_pdf')
             record.version_legible_pdf = base64.b64encode(pdf_content)
 
-            # 3) Actualizar estado y fecha de envío
+            # (3) Actualizar estado y fecha
             record.estado_dte = 'enviado'
             record.fecha_envio = fields.Datetime.now()
 
-            # 4) Registro de log
+            # (4) Log interno
             _logger.info('DTE %s generado: JSON y PDF listos', record.codigo_generacion)
             self.env['ir.logging'].create({
                 'name': 'DTE Enviado',
@@ -98,7 +99,7 @@ class DteDocument(models.Model):
                 'line': '0',
             })
 
-            # 5) Preparar adjuntos: 1) PDF, 2) JSON
+            # (5) Preparar adjuntos
             attachments = [
                 (0, 0, {
                     'name': f'{record.move_id.name}.pdf',
@@ -114,7 +115,7 @@ class DteDocument(models.Model):
                 }),
             ]
 
-            # 6) Determinar destinatario y enviar correo con ambos adjuntos
+            # (6) Buscar destinatario
             destinatario = (
                 record.move_id.partner_id.email
                 or record.move_id.invoice_partner_id.email
@@ -126,13 +127,16 @@ class DteDocument(models.Model):
                 )
                 continue
 
+            # (7) Enviar correo: ahora incluimos email_from y subject limpios
             template = self.env.ref('dte_sv.email_template_dte_document')
             template.send_mail(
                 record.id,
                 force_send=True,
                 email_values={
+                    'email_from': record.env.company.email,                                         # aseguramos un From válido
                     'email_to': destinatario,
-                    'attachment_ids': attachments
+                    'subject': f"Factura {record.move_id.name} y DTE {record.codigo_generacion}",     # subject sin saltos
+                    'attachment_ids': attachments,
                 }
             )
 
