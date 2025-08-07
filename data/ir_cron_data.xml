@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="cron_retry_dte" model="ir.cron">
+    <field name="name">Reintento envío DTE fallidos</field>
+    <field name="model_id" ref="dte_sv.model_dte_document"/>
+    <field name="state">code</field>
+    <field name="code">
+      env['dte.document'].search([('estado_dte','in',['borrador','rechazado'])]).enviar_dte()
+    </field>
+    <field name="interval_number">15</field>
+    <field name="interval_type">minutes</field>
+    <field name="active">True</field>
+  </record>
+</odoo>
+

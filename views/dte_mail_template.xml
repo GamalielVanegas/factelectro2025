@@ -4,9 +4,9 @@
     <!-- Plantilla para enviar la factura + JSON DTE -->
     <record id="email_template_dte_document" model="mail.template">
       <field name="name">Enviar Factura + DTE</field>
-      <field name="model_id" ref="dte_sv.model_dte_document"/>
+      <field name="model">dte.document</field>
 
-      <!-- El valor de email_from lo inyectamos desde el código, evitamos aquí expresiones no evaluadas -->
+      <!-- El valor de email_from lo inyectamos desde el código -->
       <field name="email_from">${object.env.company.email}</field>
       <field name="email_to">${object.move_id.partner_id.email}</field>
 

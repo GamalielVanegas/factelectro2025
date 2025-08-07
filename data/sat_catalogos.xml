@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- CAT-001: Ambiente de destino -->
+  <record id="sat_cat_001" model="dte.catalogos">
+    <field name="code">CAT-001</field>
+    <field name="name">Ambiente de destino</field>
+    <field name="catalog_type">CAT-001</field>
+  </record>
+
+  <!-- CAT-002: Tipo de Documento -->
+  <record id="sat_cat_002" model="dte.catalogos">
+    <field name="code">CAT-002</field>
+    <field name="name">Tipo de Documento</field>
+    <field name="catalog_type">CAT-002</field>
+  </record>
+
+  <!-- CAT-003: Modelo de Facturación -->
+  <record id="sat_cat_003" model="dte.catalogos">
+    <field name="code">CAT-003</field>
+    <field name="name">Modelo de Facturación</field>
+    <field name="catalog_type">CAT-003</field>
+  </record>
+
+  <!-- CAT-004: Tipo de Transmisión -->
+  <record id="sat_cat_004" model="dte.catalogos">
+    <field name="code">CAT-004</field>
+    <field name="name">Tipo de Transmisión</field>
+    <field name="catalog_type">CAT-004</field>
+  </record>
+
+  <!-- CAT-005: Tipo de Contingencia -->
+  <record id="sat_cat_005" model="dte.catalogos">
+    <field name="code">CAT-005</field>
+    <field name="name">Tipo de Contingencia</field>
+    <field name="catalog_type">CAT-005</field>
+  </record>
+
+  <!-- CAT-006: Retención IVA MH -->
+  <record id="sat_cat_006" model="dte.catalogos">
+    <field name="code">CAT-006</field>
+    <field name="name">Retención IVA MH</field>
+    <field name="catalog_type">CAT-006</field>
+  </record>
+
+  <!-- CAT-007: Tipo de Generación del Documento -->
+  <record id="sat_cat_007" model="dte.catalogos">
+    <field name="code">CAT-007</field>
+    <field name="name">Tipo de Generación del Documento</field>
+    <field name="catalog_type">CAT-007</field>
+  </record>
+
+  <!-- CAT-008: Catálogo eliminado -->
+  <record id="sat_cat_008" model="dte.catalogos">
+    <field name="code">CAT-008</field>
+    <field name="name">Catálogo eliminado</field>
+    <field name="catalog_type">CAT-008</field>
+  </record>
+
+  <!-- CAT-009: Tipo de establecimiento -->
+  <record id="sat_cat_009" model="dte.catalogos">
+    <field name="code">CAT-009</field>
+    <field name="name">Tipo de establecimiento</field>
+    <field name="catalog_type">CAT-009</field>
+  </record>
+
+  <!-- CAT-010: Código tipo de Servicio (Médico) -->
+  <record id="sat_cat_010" model="dte.catalogos">
+    <field name="code">CAT-010</field>
+    <field name="name">Código tipo de Servicio (Médico)</field>
+    <field name="catalog_type">CAT-010</field>
+  </record>
+
+  <!-- CAT-011: Tipo de ítem -->
+  <record id="sat_cat_011" model="dte.catalogos">
+    <field name="code">CAT-011</field>
+    <field name="name">Tipo de ítem</field>
+    <field name="catalog_type">CAT-011</field>
+  </record>
+
+  <!-- CAT-012: Departamento -->
+  <record id="sat_cat_012" model="dte.catalogos">
+    <field name="code">CAT-012</field>
+    <field name="name">Departamento</field>
+    <field name="catalog_type">CAT-012</field>
+  </record>
+
+  <!-- CAT-013: Municipio -->
+  <record id="sat_cat_013" model="dte.catalogos">
+    <field name="code">CAT-013</field>
+    <field name="name">Municipio</field>
+    <field name="catalog_type">CAT-013</field>
+  </record>
+
+  <!-- CAT-014: Unidad de Medida -->
+  <record id="sat_cat_014" model="dte.catalogos">
+    <field name="code">CAT-014</field>
+    <field name="name">Unidad de Medida</field>
+    <field name="catalog_type">CAT-014</field>
+  </record>
+
+  <!-- CAT-015: Tributos -->
+  <record id="sat_cat_015" model="dte.catalogos">
+    <field name="code">CAT-015</field>
+    <field name="name">Tributos</field>
+    <field name="catalog_type">CAT-015</field>
+  </record>
+
+  <!-- CAT-016: Condición de la Operación -->
+  <record id="sat_cat_016" model="dte.catalogos">
+    <field name="code">CAT-016</field>
+    <field name="name">Condición de la Operación</field>
+    <field name="catalog_type">CAT-016</field>
+  </record>
+
+  <!-- CAT-017: Forma de Pago -->
+  <record id="sat_cat_017" model="dte.catalogos">
+    <field name="code">CAT-017</field>
+    <field name="name">Forma de Pago</field>
+    <field name="catalog_type">CAT-017</field>
+  </record>
+
+  <!-- CAT-018: Plazo -->
+  <record id="sat_cat_018" model="dte.catalogos">
+    <field name="code">CAT-018</field>
+    <field name="name">Plazo</field>
+    <field name="catalog_type">CAT-018</field>
+  </record>
+
+  <!-- CAT-019: Código de Actividad Económica -->
+  <record id="sat_cat_019" model="dte.catalogos">
+    <field name="code">CAT-019</field>
+    <field name="name">Código de Actividad Económica</field>
+    <field name="catalog_type">CAT-019</field>
+  </record>
+
+  <!-- CAT-020: País -->
+  <record id="sat_cat_020" model="dte.catalogos">
+    <field name="code">CAT-020</field>
+    <field name="name">País</field>
+    <field name="catalog_type">CAT-020</field>
+  </record>
+
+  <!-- CAT-021: Otros Documentos Asociados -->
+  <record id="sat_cat_021" model="dte.catalogos">
+    <field name="code">CAT-021</field>
+    <field name="name">Otros Documentos Asociados</field>
+    <field name="catalog_type">CAT-021</field>
+  </record>
+
+  <!-- CAT-022: Tipo de documento de identificación del Receptor -->
+  <record id="sat_cat_022" model="dte.catalogos">
+    <field name="code">CAT-022</field>
+    <field name="name">Tipo de documento de identificación del Receptor</field>
+    <field name="catalog_type">CAT-022</field>
+  </record>
+
+  <!-- CAT-023: Tipo de Documento en Contingencia -->
+  <record id="sat_cat_023" model="dte.catalogos">
+    <field name="code">CAT-023</field>
+    <field name="name">Tipo de Documento en Contingencia</field>
+    <field name="catalog_type">CAT-023</field>
+  </record>
+
+  <!-- CAT-024: Tipo de Invalidación -->
+  <record id="sat_cat_024" model="dte.catalogos">
+    <field name="code">CAT-024</field>
+    <field name="name">Tipo de Invalidación</field>
+    <field name="catalog_type">CAT-024</field>
+  </record>
+
+  <!-- CAT-025: Título a que se remiten los bienes -->
+  <record id="sat_cat_025" model="dte.catalogos">
+    <field name="code">CAT-025</field>
+    <field name="name">Título a que se remiten los bienes</field>
+    <field name="catalog_type">CAT-025</field>
+  </record>
+
+  <!-- CAT-026: Tipo de Donación -->
+  <record id="sat_cat_026" model="dte.catalogos">
+    <field name="code">CAT-026</field>
+    <field name="name">Tipo de Donación</field>
+    <field name="catalog_type">CAT-026</field>
+  </record>
+
+  <!-- CAT-027: Recinto fiscal -->
+  <record id="sat_cat_027" model="dte.catalogos">
+    <field name="code">CAT-027</field>
+    <field name="name">Recinto fiscal</field>
+    <field name="catalog_type">CAT-027</field>
+  </record>
+
+  <!-- CAT-028: Régimen -->
+  <record id="sat_cat_028" model="dte.catalogos">
+    <field name="code">CAT-028</field>
+    <field name="name">Régimen</field>
+    <field name="catalog_type">CAT-028</field>
+  </record>
+
+  <!-- CAT-029: Tipo de persona -->
+  <record id="sat_cat_029" model="dte.catalogos">
+    <field name="code">CAT-029</field>
+    <field name="name">Tipo de persona</field>
+    <field name="catalog_type">CAT-029</field>
+  </record>
+
+  <!-- CAT-030: Transporte -->
+  <record id="sat_cat_030" model="dte.catalogos">
+    <field name="code">CAT-030</field>
+    <field name="name">Transporte</field>
+    <field name="catalog_type">CAT-030</field>
+  </record>
+
+  <!-- CAT-031: INCOTERMS -->
+  <record id="sat_cat_031" model="dte.catalogos">
+    <field name="code">CAT-031</field>
+    <field name="name">INCOTERMS</field>
+    <field name="catalog_type">CAT-031</field>
+  </record>
+
+  <!-- CAT-032: Domicilio Fiscal -->
+  <record id="sat_cat_032" model="dte.catalogos">
+    <field name="code">CAT-032</field>
+    <field name="name">Domicilio Fiscal</field>
+    <field name="catalog_type">CAT-032</field>
+  </record>
+</odoo>
+

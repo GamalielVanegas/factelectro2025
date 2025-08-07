@@ -1,2 +1,7 @@
 id,name,model_id:id,group_id,perm_read,perm_write,perm_create,perm_unlink
-access_dte_document_user,dte.document,model_dte_document,,1,1,1,1
+access_dte_document_user,dte.document,dte_sv.model_dte_document,,1,1,1,1
+access_dte_catalogos_user,dte.catalogos,dte_sv.model_dte_catalogos,,1,1,1,1
+access_dte_events_user,dte.events,dte_sv.model_dte_events,,1,1,1,1
+access_dte_config_wizard_user,dte.config.wizard,dte_sv.model_dte_config_wizard,,1,1,1,1
+access_certificate_import_wizard_user,certificate.import.wizard,dte_sv.model_certificate_import_wizard,,1,1,1,1
+

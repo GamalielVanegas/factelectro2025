@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="seq_dte_document" model="ir.sequence">
+    <field name="name">DTE Documento</field>
+    <field name="code">dte.document</field>
+    <field name="padding">6</field>
+    <field name="prefix">DTE-</field>
+    <field name="company_id" eval="False"/>
+  </record>
+</odoo>
+

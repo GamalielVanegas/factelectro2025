@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Menú para Eventos DTE -->
+  <menuitem
+    id="menu_dte_events"
+    name="Eventos DTE"
+    parent="menu_dte_root"
+    sequence="15"
+    action="action_dte_events"/>
+</odoo>
+

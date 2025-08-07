@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Acción para abrir el wizard de importación de certificado -->
+  <record id="action_certificate_import_wizard" model="ir.actions.act_window">
+    <field name="name">Importar Certificado</field>
+    <field name="res_model">certificate.import.wizard</field>
+    <field name="view_mode">form</field>
+    <!-- REFERENCIA COMPLETA al ID de la vista -->
+    <field name="view_id" ref="dte_sv.view_certificate_import_wizard"/>
+    <field name="target">new</field>
+  </record>
+
+  <!-- Menú bajo 'Facturación Electrónica' -->
+  <menuitem
+    id="menu_certificate_import"
+    name="Importar Certificado"
+    parent="menu_dte_root"
+    sequence="7"
+    action="action_certificate_import_wizard"/>
+</odoo>
+

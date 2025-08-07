@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_dte_config_wizard" model="ir.ui.view">
+    <field name="name">dte.config.wizard.form</field>
+    <field name="model">dte.config.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Configuración DTE">
+        <group>
+          <field name="api_user"/>
+          <field name="api_password"/>
+          <field name="env_url_prueba"/>
+          <field name="env_url_prod"/>
+        </group>
+        <footer>
+          <button string="Guardar" type="object" name="action_save" class="btn-primary"/>
+          <button string="Cancelar" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+</odoo>
+

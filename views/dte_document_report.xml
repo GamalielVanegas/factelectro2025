@@ -1,31 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <template id="report_dte_document">
-            <t t-call="web.html_container">
-                <t t-foreach="docs" t-as="dte">
-                    <div class="page">
-                        <h2>DTE: <t t-esc="dte.codigo_generacion"/></h2>
-                        <p><strong>Factura:</strong> <t t-esc="dte.move_id.name"/></p>
-                        <p><strong>Tipo Documento:</strong> <t t-esc="dte.tipo_documento"/></p>
-                        <p><strong>Fecha Envío:</strong> <t t-esc="dte.fecha_envio"/></p>
-                        <p><strong>Modelo:</strong> <t t-esc="dte.modelo_facturacion"/></p>
-                        <p><strong>Transmisión:</strong> <t t-esc="dte.tipo_transmision"/></p>
-                        <p><strong>Condición:</strong> <t t-esc="dte.condicion_operacion"/></p>
-                        <p><strong>Valor Letras:</strong> <t t-esc="dte.valor_letras"/></p>
-                        <p><strong>Observaciones:</strong> <t t-esc="dte.observaciones"/></p>
-                    </div>
-                </t>
-            </t>
-        </template>
-        
-        <report
-            id="report_dte_document_pdf"
-            string="DTE PDF"
-            model="dte.document"
-            report_type="qweb-pdf"
-            name="dte_sv.report_dte_document"
-            file="dte_sv.report_dte_document"
-            print_report_name="'DTE_' + object.codigo_generacion"
-        />
-    </data>
+  <data>
+    <template id="report_dte_document">
+      <t t-call="web.external_layout">
+        <t t-foreach="docs" t-as="doc">
+          <div class="page">
+            <h2>DTE: <t t-esc="doc.codigo_generacion"/></h2>
+            <p><strong>Factura:</strong> <t t-esc="doc.move_id.name"/></p>
+            <p><strong>Tipo Documento:</strong> <t t-esc="doc.tipo_documento"/></p>
+            <p><strong>Fecha Envío:</strong> <t t-esc="doc.fecha_envio"/></p>
+            <p><strong>Modelo:</strong> <t t-esc="doc.modelo_facturacion"/></p>
+            <p><strong>Transmisión:</strong> <t t-esc="doc.tipo_transmision"/></p>
+            <p><strong>Condición:</strong> <t t-esc="doc.condicion_operacion"/></p>
+            <p><strong>Valor en Letras:</strong> <t t-esc="doc.valor_letras"/></p>
+            <p><strong>Observaciones:</strong> <t t-esc="doc.observaciones"/></p>
+            <!-- Código QR nativo -->
+            <div style="text-align:center; margin-top:20px;">
+              <barcode type="QR" value="doc.codigo_generacion" width="100" height="100"/>
+            </div>
+          </div>
+        </t>
+      </t>
+    </template>
+
+    <record id="report_dte_document_pdf" model="ir.actions.report">
+      <field name="name">DTE PDF</field>
+      <field name="model">dte.document</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">dte_sv.report_dte_document</field>
+      <field name="report_file">dte_sv.report_dte_document</field>
+      <field name="print_report_name">'DTE_' + object.codigo_generacion</field>
+    </record>
+  </data>
 </odoo>
+

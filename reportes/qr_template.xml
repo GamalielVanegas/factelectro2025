@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="qr_code_snippet">
+    <t t-call="web.external_layout">
+      <div class="qr">
+        <img t-att-src="'data:image/png;base64,' + widget.qr_code(dte.codigo_generacion)"/>
+      </div>
+    </t>
+  </template>
+</odoo>
+
