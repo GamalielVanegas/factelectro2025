@@ -1,36 +1,78 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    <template id="report_dte_document">
-      <t t-call="web.external_layout">
-        <t t-foreach="docs" t-as="doc">
-          <div class="page">
-            <h2>DTE: <t t-esc="doc.codigo_generacion"/></h2>
-            <p><strong>Factura:</strong> <t t-esc="doc.move_id.name"/></p>
-            <p><strong>Tipo Documento:</strong> <t t-esc="doc.tipo_documento"/></p>
-            <p><strong>Fecha Envío:</strong> <t t-esc="doc.fecha_envio"/></p>
-            <p><strong>Modelo:</strong> <t t-esc="doc.modelo_facturacion"/></p>
-            <p><strong>Transmisión:</strong> <t t-esc="doc.tipo_transmision"/></p>
-            <p><strong>Condición:</strong> <t t-esc="doc.condicion_operacion"/></p>
-            <p><strong>Valor en Letras:</strong> <t t-esc="doc.valor_letras"/></p>
-            <p><strong>Observaciones:</strong> <t t-esc="doc.observaciones"/></p>
-            <!-- Código QR nativo -->
-            <div style="text-align:center; margin-top:20px;">
-              <barcode type="QR" value="doc.codigo_generacion" width="100" height="100"/>
-            </div>
-          </div>
-        </t>
-      </t>
-    </template>
+  <!-- Acción de reporte PDF -->
+  <report
+      id="report_dte_document_pdf"
+      model="dte.document"
+      string="DTE (Versión legible)"
+      report_type="qweb-pdf"
+      name="dte_sv.report_dte_document_pdf_tmpl"
+      file="dte_sv.report_dte_document_pdf_tmpl"
+  />
 
-    <record id="report_dte_document_pdf" model="ir.actions.report">
-      <field name="name">DTE PDF</field>
-      <field name="model">dte.document</field>
-      <field name="report_type">qweb-pdf</field>
-      <field name="report_name">dte_sv.report_dte_document</field>
-      <field name="report_file">dte_sv.report_dte_document</field>
-      <field name="print_report_name">'DTE_' + object.codigo_generacion</field>
-    </record>
-  </data>
+  <!-- Plantilla mínima y robusta -->
+  <template id="report_dte_document_pdf_tmpl">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="doc">
+        <div class="page">
+          <h2 style="margin-bottom:8px;">Documento Tributario Electrónico</h2>
+          <div style="font-size:12px; margin-bottom:12px;">
+            <div><b>Factura:</b> <span t-esc="doc.move_id.name"/></div>
+            <div><b>Tipo:</b> <span t-esc="dict(doc._fields['tipo_documento'].selection).get(doc.tipo_documento)"/></div>
+            <div><b>Código de Generación:</b> <span t-esc="doc.codigo_generacion"/></div>
+            <div><b>Número de Control:</b> <span t-esc="doc.numero_control"/></div>
+            <div><b>Estado DTE:</b> <span t-esc="doc.estado_dte"/></div>
+            <div><b>Fecha de Envío:</b> <span t-esc="doc.fecha_envio"/></div>
+            <div><b>Sello de Recepción:</b> <span t-esc="doc.sello_recepcion or '-'"/></div>
+          </div>
+
+          <h3 style="margin-top:12px;">Emisor / Receptor</h3>
+          <div style="font-size:12px; margin-bottom:12px;">
+            <div><b>Compañía:</b> <span t-esc="doc.move_id.company_id.name"/></div>
+            <div><b>NIT Compañía:</b> <span t-esc="doc.move_id.company_id.vat"/></div>
+            <div><b>Cliente:</b> <span t-esc="doc.move_id.partner_id.display_name"/></div>
+            <div><b>NIT Cliente:</b> <span t-esc="doc.move_id.partner_id.vat or '-'"/></div>
+          </div>
+
+          <h3>Líneas</h3>
+          <table class="table table-sm o_main_table" style="font-size:12px;">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Descripción</th>
+                <th style="text-align:right;">Cant</th>
+                <th style="text-align:right;">Precio</th>
+                <th style="text-align:right;">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-set="idx" t-value="1"/>
+              <t t-foreach="doc.move_id.invoice_line_ids.filtered(lambda l: not l.display_type)" t-as="l">
+                <tr>
+                  <td t-esc="idx"/>
+                  <td t-esc="l.name"/>
+                  <td style="text-align:right;" t-esc="l.quantity"/>
+                  <td style="text-align:right;" t-esc="l.price_unit"/>
+                  <td style="text-align:right;" t-esc="l.price_subtotal"/>
+                </tr>
+                <t t-set="idx" t-value="idx + 1"/>
+              </t>
+            </tbody>
+          </table>
+
+          <div style="text-align:right; font-size:12px; margin-top:10px;">
+            <div><b>Subtotal:</b> <span t-esc="doc.move_id.amount_untaxed"/></div>
+            <div><b>Impuestos:</b> <span t-esc="doc.move_id.amount_tax"/></div>
+            <div><b>Total:</b> <span t-esc="doc.move_id.amount_total"/></div>
+          </div>
+
+          <t t-if="doc.observaciones">
+            <h3 style="margin-top:12px;">Observaciones</h3>
+            <p t-esc="doc.observaciones"/>
+          </t>
+        </div>
+      </t>
+    </t>
+  </template>
 </odoo>
 

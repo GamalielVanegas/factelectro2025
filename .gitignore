@@ -1,0 +1,33 @@
+# Python / Odoo
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.env
+*.log
+
+# Reportes/temporal
+/tmp/
+.DS_Store
+
+# NO subir datos locales de Odoo
+filestore/
+*/filestore/
+
+# Certificados/llaves
+*.crt
+*.key
+certificado/
+**/ssl/
+**/temp/*.crt
+**/temp/*.key
+
+# Firmador / jars / temporales
+*.jar
+firmador/
+dte-firmador/*/docker/*/temp/
+**/tomcat.*
+
+# Config locales
+*.conf
+*.ini

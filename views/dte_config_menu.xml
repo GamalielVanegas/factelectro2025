@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <!-- Acción para abrir el wizard de configuración -->
+  <!-- Menú raíz (si ya existe en otro XML, no pasa nada por redeclararlo) -->
+  <menuitem id="menu_dte_root" name="DTE" sequence="10"/>
+
+  <!-- Acción para abrir el wizard en modal -->
   <record id="action_dte_config_wizard" model="ir.actions.act_window">
     <field name="name">Configurar DTE</field>
     <field name="res_model">dte.config.wizard</field>
     <field name="view_mode">form</field>
-    <!-- referencia completa al XML-ID de la vista -->
     <field name="view_id" ref="dte_sv.view_dte_config_wizard"/>
     <field name="target">new</field>
   </record>
 
-  <!-- Menú bajo 'Facturación Electrónica' -->
+  <!-- Menú de Configuración -->
   <menuitem
     id="menu_dte_config"
     name="Configurar DTE"

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <record id="view_dte_config_wizard" model="ir.ui.view">
     <field name="name">dte.config.wizard.form</field>
@@ -6,10 +6,12 @@
     <field name="arch" type="xml">
       <form string="Configuración DTE">
         <group>
-          <field name="api_user"/>
-          <field name="api_password"/>
-          <field name="env_url_prueba"/>
-          <field name="env_url_prod"/>
+          <field name="api_user"           string="Usuario API"/>
+          <field name="api_password"       string="Contraseña API" password="True"/>
+          <field name="env_url_prueba"     string="URL Sandbox"/>
+          <field name="env_url_prod"       string="URL Producción"/>
+          <field name="firmador_url"       string="URL Firmador (Docker)"/>
+          <field name="key_pass"           string="Clave privada del .crt"/>
         </group>
         <footer>
           <button string="Guardar" type="object" name="action_save" class="btn-primary"/>
